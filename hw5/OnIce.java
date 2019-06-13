@@ -452,8 +452,6 @@ public class OnIce {
                         }
                     }
 
-                    //System.out.printf("Move: (%d, %d) to (%d, %d)\n", row, col, new_row, new_col);
-
                     // when landing on gold or pit, handle by setting Q values for
                     // the space to the reward of that spot, then go to next iteration
                     if (prob.map.get(new_row).get(new_col).equals("G")) {
@@ -476,8 +474,6 @@ public class OnIce {
                         }
                     }
 
-                    //System.out.printf("bestmove at (%d, %d): %s %f\n", new_row, new_col, actionToString(bestNewMove), bestNewQVal);
-
                     // update the Q val of the previous square
                     double oldQVal = utilities[moveDirection][row][col];
                     utilities[moveDirection][row][col] = oldQVal + LEARNING_RATE * (rewards[row][col] + DISCOUNT_FACTOR * bestNewQVal - oldQVal);
@@ -485,17 +481,6 @@ public class OnIce {
                     row = new_row;
                     col = new_col;
                 }
-            }
-
-            for (int i = 0; i < height; i++) {
-                for (int j = 0; j < width; j++) {
-                    System.out.print("( ");
-                    for (int a = 0; a < ACTIONS; a++) {
-                        System.out.printf("%f ", utilities[a][i][j]);
-                    }
-                    System.out.print(")");
-                }
-                System.out.println("\n");
             }
 
             // finding the policy per block
@@ -507,7 +492,7 @@ public class OnIce {
                     } else {
                         double maxVal = Double.NEGATIVE_INFINITY;
                         for (int a = 0; a < ACTIONS; a++) {
-                            // policy should be action with highest util at thie block
+                            // policy should be action with highest util at this block
                             if (utilities[a][i][j] > maxVal) {
                                 maxVal = utilities[a][i][j];
                                 policy.bestActions[i][j] = actionToString(a);   
@@ -531,6 +516,7 @@ public class OnIce {
         int r, int c, int new_r, int new_c, int move) {
             int bestNewMove = 0;
             double bestNewQVal = Double.NEGATIVE_INFINITY;
+            // get action with highest utility
             for (int a = 0; a < ACTIONS; a++) {
                 if (utilities[a][new_r][new_c] > bestNewQVal) {
                     bestNewQVal = utilities[a][new_r][new_c];
