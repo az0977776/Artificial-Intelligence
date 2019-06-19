@@ -1,3 +1,7 @@
+# LaTeX
+*.aux
+*.synctex.gz
+
 # VSCode
 *.vscode
 
