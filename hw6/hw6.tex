@@ -1,0 +1,69 @@
+
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\setlength{\parindent}{0pt}
+
+\lstset{frame=tb,
+	language=Java, % Change this
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3
+}
+\fancyhf{}
+\pagestyle{empty}
+\lhead{Aaron Wang} % Change this
+\chead{Semi-Supervised Tomatoes}
+\rhead{\today}
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}}
+\newcommand{\ig}[1]{\includegraphics{#1}}
+
+\begin{document}
+\thispagestyle{fancy}
+
+\myparagraph{Question 1}
+
+When SEMISUPERVISED is false and FIXED\_SEED is true, the second cluster seems to be the positive cluster with words like beautifully, touching, power, true and style. On subsequent runs, where we randomize the seed, the cluster's theme changes and the top words in each cluster are not very clear at showing the good/badness of each cluster. I think I am discovering different clusters on each iteration, but I think the clustering is identifying real patterns.
+
+\myparagraph{Question 2}
+
+\begin{enumerate}
+	\item bag of words: "introspective", "entertaining", "worth"
+	\item maybe bag of bigrams? "hard time"
+	\item mixed sentiments, hard to fix: "thrilling", "positively", "deceit", "tragedy"
+	\item bag of words: "aggressive", "manipulative"
+	\item mixed sentiments, hard to fix: "epic", "sincere", "crisis"
+	\item bag of words: "Trouble", "mess"
+	\item bag of words: "hate"
+	\item bag of words: "recommend"
+	\item need to parse and understand meaning, critic is saying his dreams should remain dreams, but dream has a positive sentiment
+	\item bag of words: "joy"
+\end{enumerate}
+
+\myparagraph{Question 3}
+
+There will be some problems extracting the sentiment by using a HMM. The word "a" or "an" works for "positively thrilling", "hard time", "manipulative whitewash", and "self-indulgent", but many of the reviews do not have this styling. Some of the reviews also start with sentiment phrases like "dizzily gorgeous", "impeccable", and "aggressive" which are pretty good indicators of the overall sentence sentiment.
+
+
+\myparagraph{Question 4}
+That sentence might be hard to parse for meaning because of the strange phrases that the critic uses to describe the film. Words like "meaty", "peppering" and "zingers" are not very common words and are unlikely to be picked up and interpreted correctly by a model. The usage of metaphors like "peppering the pages" makes it harder to parse for the full meaning even as a human.
+
+\end{document}
