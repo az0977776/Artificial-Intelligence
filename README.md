@@ -9,3 +9,5 @@ HW3: Naive Bayes, Markov Chain
 HW4: Decision Tree
 
 HW5: Markov Decision Process, Q-Learning
+
+HW6: Semisupervised Reinforcement Training
